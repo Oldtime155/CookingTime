@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CookingTime</title>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+<link href='http://fonts.googleapis.com/css?family=Berkshire+Swash' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Leckerli+One' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="Food.css">
+ 
+<script src="https://code.jquery.com/jquery-1.10.2.js">
+
+</script>
+</head>
+<body>
+<div class="fullscreen-bg">
+<video loop muted autoplay poster="cookie.jpg" id="fullscreen-bg__video">
+    <source src="cookies.webm" type="video/webm">
+	<source src="cookies.mp4" type="video/mp4">
+</video>
+</div>
+<div id="header">
+	<h1>CookingTime<a id="us"> by Alex Waller and Brendan Huber</a>
+	</h1>				 
+</div>
+<h2>Spotlights
+	<span id="titleRight">
+		Recipe Finder
+	</span>
+</h2>
+<div id="scroll">
+<div id="contentContainer">
+	<div id="wrapper">
+    <div id="itemOne" class="content">
+	
+    </div>
+    <div id="itemTwo" class="content">
+ 
+    </div>
+    <div id="itemThree" class="content">
+ 
+    </div>
+    <div id="itemFour" class="content">
+ 
+    </div>
+	
+	</div>
+</div>
+ <div id="navLinks">
+    <ul>
+        <li class="itemLinks" data-pos="0px">Pasta</li>
+        <li class="itemLinks" data-pos="-550px">Pizza</li>
+        <li class="itemLinks" data-pos="-1100px">Bread</li>
+        <li class="itemLinks" data-pos="-1650px">Salad</li>
+    </ul>
+	<br>
+	Try searching one of these four items!
+</div>
+</div>
+
+<div class=smallOvenCall>
+<form method="POST">      
+Enter any keyword to find a recipe: <input type="text" id="recipefield" value="">
+<br>
+
+<input id="button" type="submit" value="Submit">
+</form>
+<div id="goodEats"></div>
+<div id="SearchResults">Instructions will appear hear</div>
+</form>
+
+
+</div>
+
+
+<script>
+$("#button").click(function(e){
+var value=$("#recipefield").val();
+var ID="1166983";
+console.log(value);
+e.preventDefault();
+var myurl="http://api.bigoven.com/recipes?pg=1&rpp=25&title_kw=";
+myurl+=value+"&api_key=AOD929FSY7VPV0f9Yik0Kl4Eiee501D7";
+console.log(myurl);
+$.ajax({
+contentType:"application/json",Accept:"application/json",type:"GET",cache:false,dataType:'json',url:myurl,success:function(parsed_json){var Count=parsed_json['ResultCount'];
+if(Count>25){Count=25;}
+var Random=Math.random()*(Count);
+console.log(Random);Random=Math.floor(Random);
+console.log(Random);
+var theArray=parsed_json['Results']
+var Title1=theArray[10].Title;var Title2=theArray[11].Title;var Title3=theArray[12].Title;
+var Titles=Title1+", "+Title2+", "+Title3;$("#dispcity").html(Titles);
+var Title=theArray[Random].Title;
+console.log(parsed_json);
+console.log(Title);
+ID=theArray[Random].RecipeID;
+var Cuisine=theArray[Random].Cuisine;
+var pictureSrc=theArray[Random].ImageURL;
+var theWebUrl=theArray[Random].WebURL;
+var everything='<p>';
+everything+="Name: "+Title;
+everything+='<div style="background-image: url('+pictureSrc+'); background-size: cover; height: 350px; width: 550px; border: 1px solid black; display:block; margin-left:auto; margin-right: auto;">';
+$("#goodEats").html(everything);
+var url="http://api.bigoven.com/recipe/"+ID+"?api_key=AOD929FSY7VPV0f9Yik0Kl4Eiee501D7";
+console.log(url);
+$.ajax({contentType:"application/json",Accept:"application/json",type:"GET",cache:false,dataType:'json',url:url,success:function(parsed_json){console.log(parsed_json);
+var everything="";
+everything+=parsed_json["Title"];
+everything+="<br> Instructions:"
+everything+=parsed_json["Instructions"];
+everything+='<br> Get the full ingredients list <a href='+theWebUrl+'>HERE</a>';
+$("#SearchResults").html(everything);}});}});});
+var links = document.querySelectorAll(".itemLinks");
+var wrapper = document.querySelector("#wrapper");
+ 
+var activeLink = 0;
+ 
+for (var i = 0; i < links.length; i++) {
+    var link = links[i];
+    link.addEventListener('click', setClickedItem, false);
+ 
+    link.itemID = i;
+}
+ 
+links[activeLink].classList.add("active");
+ 
+function setClickedItem(e) {
+    removeActiveLinks();
+ 
+    var clickedLink = e.target;
+    activeLink = clickedLink.itemID;
+ 
+    changePosition(clickedLink);
+}
+ 
+function removeActiveLinks() {
+    for (var i = 0; i < links.length; i++) {
+        links[i].classList.remove("active");
+    }
+}
+ 
+function changePosition(link) {
+    var position = link.getAttribute("data-pos");
+ 
+    var translateValue = "translate3d(" + position + ", 0px, 0)";
+    wrapper.style[transformProperty] = translateValue;
+ 
+    link.classList.add("active");
+}
+
+var transforms = ["transform",
+            "msTransform",
+            "webkitTransform",
+            "mozTransform",
+            "oTransform"];
+ 
+var transformProperty = getSupportedPropertyName(transforms);
+
+function getSupportedPropertyName(properties) {
+    for (var i = 0; i < properties.length; i++) {
+        if (typeof document.body.style[properties[i]] != "undefined") {
+            return properties[i];
+        }
+    }
+    return null;
+}
+</script>
+</body>
+</html>

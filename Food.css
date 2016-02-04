@@ -1,0 +1,198 @@
+
+body{
+	font: 400 100px/1.3 'Berkshire Swash', Helvetica, sans-serif;
+	text-shadow: 1px 1px 0px #ededed, 4px 4px 0px rgba(0,0,0,0.15);
+	color: white;
+}
+
+#us {
+	float: right;
+	font-size:50%
+}
+
+#header {
+    -moz-transition: background-color 0.2s ease;
+    -webkit-transition: background-color 0.2s ease;
+    -ms-transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease;
+    background: #2e3842;
+    height: 80px;
+    left: 0;
+    line-height: 3em;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10000;
+}
+
+h1 {
+	font: 400 100px/1.2 'Leckerli One', Helvetica, sans-serif;
+	color: white;
+	text-shadow: 2px 2px 0px rgba(0,0,0,0.5), 4px 4px 8px rgba(0,0,0,0.2);
+	line-height: 10%;
+	font-size: 50%
+
+  
+}
+
+h2 {
+	padding-left:50px;
+	line-height:70%
+}
+
+
+.fullscreen-bg {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  z-index: -100;
+}
+
+.fullscreen-bg__video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+@media (min-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    height: 300%;
+    top: -100%;
+  }
+}
+
+@media (max-aspect-ratio: 16/9) {
+  .fullscreen-bg__video {
+    width: 300%;
+    left: -100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .fullscreen-bg {
+    background: url('cookie.jpg') center center / cover no-repeat;
+  }
+
+  .fullscreen-bg__video {
+    display: none;
+  }
+}
+
+.smallOvenCall {
+	font-size:40%;
+	float:right;
+	text-align:center;
+	width:50%;
+}
+
+#titleRight {
+	float:right;
+	padding-right: 50px;
+}
+
+#scroll{
+	float:left;
+	padding-top:0px;
+	padding-right: 5px;
+	padding-left:90px;
+	padding-bottom:5px;
+}
+
+#wrapper {
+    width: 2200px;
+    transform: translate3d(0, 0, 0);
+	transition: transform .5s ease-in-out;
+}
+.content {
+	text-align: center;
+    float: left;
+    width: 550px;
+    height: 350px;
+    white-space: normal;
+    background-repeat: no-repeat;
+	
+}
+#itemOne {
+    background-color: #2e3842;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/0/0c/Pasta_Venice.jpg/1024px-Pasta_Venice.jpg");
+	background-size: 550px 350px;
+}
+#itemTwo {
+    background-color: #2e3842;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Pizza_with_tomatoes.jpg/800px-Pizza_with_tomatoes.jpg");
+	background-size: 550px 350px;
+}
+#itemThree {
+    background-color: #2e3842;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/c/c7/Korb_mit_Br%C3%B6tchen.JPG/1280px-Korb_mit_Br%C3%B6tchen.JPG");
+	background-size: 550px 350px;
+}
+#itemFour {
+    background-color: #2e3842;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/f/f3/Spinach_salad_with_various_ingredients.jpg");
+	background-size: 550px 350px;
+}
+#contentContainer {
+	float: center;
+    width: 550px;
+    height: 350px;
+    border: 1px black solid;
+    overflow: hidden;
+}
+#navLinks {
+	font-size: 25%;
+    text-align: center;
+    width: 550px;
+}
+    #navLinks ul {
+
+        margin: 0px;
+        padding: 0px;
+        display: inline-block;
+        margin-top: 6px;
+    }
+        #navLinks ul li {
+            float: left;
+            text-align: center;
+            margin: 10px;
+            list-style: none;
+            cursor: pointer;
+            background-color: #2e3842;
+            padding: 5px;
+            border-radius: 50%;
+            border: black 1px solid;
+        }
+            #navLinks ul li:hover {
+                background-color: #333333;
+            }
+            #navLinks ul li.active {
+                background-color: #333333;
+                color: #FFFFFF;
+                outline-width: 7px;
+            }
+                #navLinks ul li.active:hover {
+                    background-color: #484848;
+                    color: #FFFFFF;
+                }
+				
+				
+a:link {
+    color: #FFFFFF;
+}
+
+a:visited {
+    color: #FFFFFF;
+}
+
+a:hover {
+    color: #FFFFFF;
+}
+
+a:active {
+    color: #FFFFFF;
+}
