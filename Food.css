@@ -36,9 +36,12 @@ h1 {
 }
 
 h2 {
-	padding-left:50px;
-	line-height:70%
+	padding-left:200px;
+	padding-right:200px;
+	line-height:150%;
+	font-size: 70%;
 }
+
 
 
 .fullscreen-bg {
